@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Passports
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input type="text" 
+                placeholder="Title" 
+                [(ngModel)]="title"
+                name="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" 
+                placeholder="Passport Number" 
+                [(ngModel)]="passportNum"
+                name="passportNum"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" 
+                placeholder="Full Name" 
+                [(ngModel)]="name"
+                name="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" 
+                placeholder="Expiry Date" 
+                [(ngModel)]="expiry_date"
+                name="expiry_date"></ion-input>
+  </ion-item>
+  <button ion-button block (click)="onSave()">Save</button>
+  <button ion-button block color="danger" (click)="onCancel()" block>Cancel</button>
+</ion-content>

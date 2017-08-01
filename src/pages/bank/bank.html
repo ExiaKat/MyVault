@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Bank Accounts
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input type="text" name="title" placeholder="Title" [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="account" placeholder="Bank Account" [(ngModel)]="account"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" name="mobile" placeholder="Mobile" [(ngModel)]="mobile"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="username" placeholder="Username" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <button ion-button block (click)="onSave()">Save</button>
+  <button ion-button block (click)="onCancel()" color="danger">Cancel</button>
+</ion-content>

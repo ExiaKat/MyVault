@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      Emails
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-input type="text" name="title" placeholder="Title" [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="email" name="emailadd" placeholder="Email Address" [(ngModel)]="emailadd"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" name="emailpass" placeholder="Email Password" [(ngModel)]="emailpass"></ion-input>
+  </ion-item>
+  <button ion-button block (click)="onSave()">Save</button>
+  <button ion-button block (click)="onCancel()" color="danger">Cancel</button>
+</ion-content>

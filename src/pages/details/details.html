@@ -1,0 +1,58 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{passItem.title}}
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            <h1>{{passItem.title}}</h1>
+        </ion-card-header>
+        <ion-card-content>
+            <div *ngIf="isLoginPage()">        
+                <h2>Username: {{passItem.username}}</h2>
+                <h2>Password: {{passItem.password}}</h2>
+            </div>
+            <div *ngIf="isPasswordPage()">
+                <h2>Password: {{passItem.password}}</h2>
+            </div>
+            <div *ngIf="isEmailPage()">
+                <h2>Email Address: {{passItem.emailadd}}</h2>
+                <h2>Email Password: {{passItem.emailpass}}</h2>
+            </div>
+            <div *ngIf="isBankPage()">
+                <h2>Account Number: {{passItem.account}}</h2>
+                <h2>Mobile: {{passItem.mobile}}</h2>
+                <h2>Username: {{passItem.username}}</h2>
+                <h2>Password: {{passItem.password}}</h2>
+            </div>
+            <div *ngIf="isPassportPage()">
+                <h2>Passport Number: {{passItem.passportNum}}</h2>
+                <h2>Full Name: {{passItem.name}}</h2>
+                <h2>Expiry Date: {{passItem.expiry_date}}</h2>
+            </div>
+            <div *ngIf="isNotePage()">
+                <h2>{{passItem.note}}</h2>
+            </div>
+            <ion-row>
+                <ion-col>
+                    <button ion-button outline icon-only>
+                       <ion-icon name="create"></ion-icon>                        
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button outline icon-only>
+                        <ion-icon name="ios-star-outline"></ion-icon>                        
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button color="danger" icon-only>
+                        <ion-icon name="trash"></ion-icon>                        
+                    </button>
+                </ion-col>
+            </ion-row>            
+        </ion-card-content>
+    </ion-card>
+</ion-content>
