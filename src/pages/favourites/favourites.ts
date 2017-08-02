@@ -22,6 +22,11 @@ export class FavouritesPage {
     console.log('ionViewDidLoad FavouritesPage');
     this.favList = this.favService.getFavourites();
   }
+  ionViewWillEnter(){
+    this.favList = this.favService.getFavourites();
+    console.log("favourites page:");
+    console.log(this.favList);
+  }
   isLoginPage(pageTitle: string){
       return pageTitle == "Logins";
   }
@@ -40,6 +45,7 @@ export class FavouritesPage {
   isNotePage(pageTitle: string){
       return pageTitle =="Secure Notes";
   }
+
   onShowDetails(favItem: {pageTitle: string, passItem: any}){
         console.log(favItem.passItem);
         this.navCtrl.push(DetailsPage, {

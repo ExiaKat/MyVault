@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LoginService{
-
     private ss: SecureStorage;
     private keyStore: Promise<SecureStorageObject>;
 
@@ -17,7 +16,6 @@ export class LoginService{
         switch (pageTitle) {
             case "Logins":
                 this.passList.logins.push(passItem);
-                console.log("in case loginpage");
                 break;
             case "Passwords":
                 this.passList.passwords.push(passItem);
@@ -36,10 +34,13 @@ export class LoginService{
                 break;
             default:
                 break;
-        }        
+        }       
+        this.storeKeys(this.passList);
+    }
+    storeKeys(value: any){
         this.keyStore.then((storage: SecureStorageObject) => {
-            storage.set("keys", JSON.stringify(this.passList)).then(
-                data => console.log("login saved!"),
+            storage.set("keys", JSON.stringify(value)).then(
+                data => console.log("login saved!!"),
                 error => console.log(error)
             );
         });
@@ -59,7 +60,6 @@ export class LoginService{
         switch (page) {
             case "Logins":
                 _passList = this.passList.logins;
-                console.log("in case loginpage");
                 break;
             case "Passwords":
                 _passList = this.passList.passwords;
