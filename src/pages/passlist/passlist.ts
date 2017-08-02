@@ -60,9 +60,4 @@ export class PassListPage{
             passItem: passItem
         })
     }
-
-    onFavourite(passItem){
-        //Todo: implement the code to add to favourite.
-        console.log("Added to favourite!");
-    }
 }

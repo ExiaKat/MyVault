@@ -1,4 +1,4 @@
-import { Passwords } from './../../interface/passwords';
+import { FavService } from './../../services/favservice';
 import { NavController, NavParams } from 'ionic-angular';
 import { Component } from '@angular/core';
 
@@ -10,7 +10,11 @@ export class DetailsPage {
     pageTitle: string;
     passItem: any;
 
-    constructor(private navCtrl: NavController, private navParams: NavParams) {
+    constructor(
+        private navCtrl: NavController, 
+        private navParams: NavParams, 
+        private favService: FavService
+    ) {
         this.pageTitle = this.navParams.get("pageTitle");
         this.passItem = this.navParams.get("passItem");
     }
@@ -31,5 +35,14 @@ export class DetailsPage {
     }
     isNotePage(){
         return this.pageTitle =="Secure Notes";
+    }
+    onFavourite(){
+        this.favService.addToFavourites(this.pageTitle, this.passItem);
+    }
+    onUnFavourite(){
+        this.favService.removeFromFavourites(this.passItem);
+    }
+    isFavourite(){
+        return this.favService.isFavourite(this.passItem);
     }
 }

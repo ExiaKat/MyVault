@@ -1,3 +1,4 @@
+import { FavService } from './../services/favservice';
 import { DetailsPage } from './../pages/details/details';
 import { Passwords } from './../interface/passwords';
 import { LoginService } from './../services/login';
@@ -61,7 +62,8 @@ import { MyApp } from './app.component';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SecureStorage,
     LoginService,
-    Passwords
+    Passwords,
+    FavService
   ]
 })
 export class AppModule {}

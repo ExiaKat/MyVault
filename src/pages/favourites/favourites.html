@@ -7,6 +7,16 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let favItem of favList" (click)="onShowDetails(favItem)">
+        <h1>{{favItem.passItem.title}}</h1>
+        <p *ngIf="isLoginPage(favItem.pageTitle)">Username: {{favItem.passItem.username}}</p>
+        <p *ngIf="isPasswordPage(favItem.pageTitle)">Password: {{favItem.passItem.password}}</p>
+        <p *ngIf="isEmailPage(favItem.pageTitle)">Email Address: {{favItem.passItem.emailadd}}</p>
+        <p *ngIf="isBankPage(favItem.pageTitle)">Bank Account: {{favItem.passItem.account}}</p>
+        <p *ngIf="isPassportPage(favItem.pageTitle)">Passport Number: {{favItem.passItem.passportNum}}</p>
+        <p *ngIf="isNotePage(favItem.pageTitle)">Notes: {{favItem.passItem.note}}</p>
+    </button>
+  </ion-list>
 </ion-content>
