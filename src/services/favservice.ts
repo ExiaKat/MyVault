@@ -25,33 +25,41 @@ export class FavService{
         this.favList.splice(pos, 1);
         this.secureStoreService.saveKeys("fav", this.favList);
     }
-    
+
+    updateFavourites(oldPassItem: any, newPassItem: any){
+        let pos = this.favList.findIndex((favEle) => {
+            return favEle.passItem.title == oldPassItem.title;
+        })
+        if(pos != -1){
+            this.favList[pos].passItem = newPassItem;
+            this.secureStoreService.saveKeys("fav", this.favList);
+        }
+    }
+
     getFavList(){
         return this.favList;
     }
 
-    getFavData(key: string){
-        return this.secureStoreService.getkeyStorage()
-        .then((sso: SecureStorageObject) => {
-            sso.get(key)
-                .then(
-                    value => {
-                    this.favList = JSON.parse(value);
-                    console.log("in then() this.favList:");
-                    console.log(this.favList);
-                },
-                reason => {
+    getFavData(){
+        return this.secureStoreService.getkeyStorage("fav")
+            .then(
+                (value) => {
+                this.favList = JSON.parse(value);
+                console.log("in then() this.favList:");
+                console.log(this.favList);
+                return this.favList;
+            },
+                (reason) => {
                     console.log("No favourites saved in key store yet!");
-                }
-            );
-        });            
+                    return this.favList;
+            });          
     }
 
     isFavourite(passItem: any){
-        return this.favList.find((favEle: {pageTitle: string, passItem: any}) =>
-    {
-        return favEle.passItem.title == passItem.title;
-    });
+        return this.favList.find((
+            favEle: {pageTitle: string, passItem: any}) =>{
+                return favEle.passItem.title == passItem.title;
+            });
     }
 
 }

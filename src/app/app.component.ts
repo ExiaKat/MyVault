@@ -1,5 +1,3 @@
-import { FavService } from './../services/favservice';
-import { LoginService } from './../services/login';
 import { TabsPage } from './../pages/tabs/tabs';
 
 import { Component } from '@angular/core';
@@ -16,17 +14,13 @@ export class MyApp {
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    private loginService: LoginService,
-    private favService: FavService
+    splashScreen: SplashScreen
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.loginService.getKeysData("keys");
-      this.favService.getFavData("fav")
     });
   }
 }

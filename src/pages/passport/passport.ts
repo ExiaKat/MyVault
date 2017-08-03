@@ -1,3 +1,4 @@
+import { FavService } from './../../services/favservice';
 import { LoginService } from './../../services/login';
 import { Passwords } from './../../interface/passwords';
 import { ViewController, NavParams } from 'ionic-angular';
@@ -13,27 +14,67 @@ export class PassportPage {
     name: string;
     expiry_date: string;
     pageTitle: string;
+    update: boolean;
+    oldPassItem: {title, passportNum, name, expiry_date};
 
     constructor(private viewCtrl: ViewController,
               private passItem: Passwords,
               private loginService: LoginService,
-              private navParams: NavParams){      
+              private navParams: NavParams,
+              private favService: FavService){      
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PassportPage');
+    this.update = false;
     this.pageTitle = this.navParams.get("pageTitle");
-    // this.passItem = this.loginService.getPassObject();
+    if(this.navParams.get("passItem")){
+      this.oldPassItem = this.navParams.get("passItem");
+      this.update = this.navParams.get("update");
+      this.title = this.oldPassItem.title;
+      this.passportNum = this.oldPassItem.passportNum;
+      this.name = this.oldPassItem.name; 
+      this.expiry_date = this.oldPassItem.expiry_date;
+    }
   }
 
   onSave(){
-    //Todo: save user's input and close the modal    
-    this.loginService.addPassItem({
-      title: this.title,
-      passportNum: this.passportNum,
-      name: this.name,
-      expiry_date: this.expiry_date
-    }, this.pageTitle);
+    if(this.update){
+      this.loginService.updatePassItem(
+        this.oldPassItem,
+        {
+          title: this.title,
+          passportNum: this.passportNum,
+          name: this.name,
+          expiry_date: this.expiry_date
+        },
+        this.pageTitle
+      );
+      this.favService.updateFavourites(
+        this.oldPassItem,
+        {
+          title: this.title,
+          passportNum: this.passportNum,
+          name: this.name,
+          expiry_date: this.expiry_date
+        }
+      );
+      this.viewCtrl.dismiss(
+        {
+          title: this.title,
+          passportNum: this.passportNum,
+          name: this.name,
+          expiry_date: this.expiry_date
+        }
+      );
+    } else {
+      this.loginService.addPassItem({
+        title: this.title,
+        passportNum: this.passportNum,
+        name: this.name,
+        expiry_date: this.expiry_date
+      }, this.pageTitle);
+    }
     // console.log(this.passItem);
     this.onCancel();
   }

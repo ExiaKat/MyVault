@@ -22,7 +22,7 @@ export class FavouritesPage {
     console.log('ionViewDidLoad FavouritesPage');
   }
   ionViewWillEnter(){
-    this.favList = this.favService.getFavList();
+    this.favService.getFavData().then(value => this.favList = value);
     console.log("favourites page:");
     console.log("favList.length:" + this.favList.length);
   }

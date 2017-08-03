@@ -22,8 +22,10 @@ export class SecureStorageService {
         });
     }
 
-    getkeyStorage(){
-        return this.keyStorage;
+    getkeyStorage(key: string){
+        return this.keyStorage.then((sso: SecureStorageObject) => {
+            return sso.get(key)
+        });
         // console.log("secService.getKeys().data: ");
         // console.log(data);
         // return data;
