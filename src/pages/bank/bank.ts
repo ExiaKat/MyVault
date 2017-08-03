@@ -24,7 +24,7 @@ export class BankPage{
     ionViewDidLoad() {  
     console.log('ionViewDidLoad BankPage');
     this.pageTitle = this.navParams.get("pageTitle");
-    this.passItem = this.loginService.getPassObject();
+    // this.passItem = this.loginService.getPassObject();
     }
 
     onSave(){
@@ -36,12 +36,12 @@ export class BankPage{
         username: this.username,
         password: this.password
         }, this.pageTitle);
-        console.log(this.passItem);
+        // console.log(this.passItem);
         this.onCancel();
     }
 
     onCancel(){
-        this.viewCtrl.dismiss(this.passItem.banks);
+        this.viewCtrl.dismiss();
     }
 
 }

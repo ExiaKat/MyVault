@@ -1,3 +1,4 @@
+import { SecureStorageService } from './../services/secservice';
 import { FavService } from './../services/favservice';
 import { DetailsPage } from './../pages/details/details';
 import { Passwords } from './../interface/passwords';
@@ -63,7 +64,8 @@ import { MyApp } from './app.component';
     SecureStorage,
     LoginService,
     Passwords,
-    FavService
+    FavService,
+    SecureStorageService
   ]
 })
 export class AppModule {}

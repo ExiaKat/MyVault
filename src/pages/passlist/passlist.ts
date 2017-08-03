@@ -32,7 +32,7 @@ export class PassListPage{
     onAddItem(page: any){
         let modalPage = this.modalCtrl.create(page, {pageTitle: this.title});
         modalPage.present();
-        modalPage.onDidDismiss((data: any[]) => this.passList = data);
+        //modalPage.onDidDismiss((data: any[]) => this.passList = data);
     }
 
     isLoginPage(){

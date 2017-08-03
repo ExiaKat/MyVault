@@ -20,12 +20,11 @@ export class FavouritesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavouritesPage');
-    this.favList = this.favService.getFavourites();
   }
   ionViewWillEnter(){
-    this.favList = this.favService.getFavourites();
+    this.favList = this.favService.getFavList();
     console.log("favourites page:");
-    console.log(this.favList);
+    console.log("favList.length:" + this.favList.length);
   }
   isLoginPage(pageTitle: string){
       return pageTitle == "Logins";

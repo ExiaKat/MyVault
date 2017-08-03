@@ -23,7 +23,7 @@ export class PassportPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PassportPage');
     this.pageTitle = this.navParams.get("pageTitle");
-    this.passItem = this.loginService.getPassObject();
+    // this.passItem = this.loginService.getPassObject();
   }
 
   onSave(){
@@ -34,11 +34,11 @@ export class PassportPage {
       name: this.name,
       expiry_date: this.expiry_date
     }, this.pageTitle);
-    console.log(this.passItem);
+    // console.log(this.passItem);
     this.onCancel();
   }
 
   onCancel(){
-    this.viewCtrl.dismiss(this.passItem.passports);
+    this.viewCtrl.dismiss();
   }
 }

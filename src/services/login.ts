@@ -1,16 +1,15 @@
+import { SecureStorageService } from './secservice';
 import { Passwords } from './../interface/passwords';
 import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class LoginService{
-    private ss: SecureStorage;
-    private keyStore: Promise<SecureStorageObject>;
 
-    constructor(private passList: Passwords){
-        this.ss = new SecureStorage();
-        this.keyStore = this.ss.create("key_store");
-    }
+    constructor(
+        private passList: Passwords, 
+        private secureStoreService: SecureStorageService
+    ){}
 
     addPassItem(passItem: any, pageTitle: string){
         switch (pageTitle) {
@@ -34,26 +33,8 @@ export class LoginService{
                 break;
             default:
                 break;
-        }       
-        this.storeKeys(this.passList);
-    }
-    storeKeys(value: any){
-        this.keyStore.then((storage: SecureStorageObject) => {
-            storage.set("keys", JSON.stringify(value)).then(
-                data => console.log("login saved!!"),
-                error => console.log(error)
-            );
-        });
-    }
-    prepareData(){
-        this.keyStore.then((storage: SecureStorageObject) => {
-            storage.get("keys").then(data => {
-                this.passList= JSON.parse(data);
-                console.log(this.passList);
-            }, error => {
-                console.log("No passwords saved in key store yet!")
-            });
-        });
+        }  
+        this.secureStoreService.saveKeys("keys", this.passList);
     }
     getPassList(page: string){ 
         let _passList = [];
@@ -82,7 +63,20 @@ export class LoginService{
         console.log("getPassList() -> _passList" + _passList);
         return _passList;
     }
-    getPassObject(){
-        return this.passList;
+    getKeysData(key: string){
+        this.secureStoreService.getkeyStorage()
+        .then((sso: SecureStorageObject) => {
+            sso.get(key)
+                .then(
+                    value => {
+                    this.passList = JSON.parse(value);
+                    console.log("in then() this.passList:");
+                    console.log(this.passList);
+                },
+                reason => {
+                    console.log("No passwords saved in key store yet!");
+                }
+            );
+        });
     }
 }

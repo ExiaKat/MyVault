@@ -22,7 +22,7 @@ export class PasswordPage{
     ionViewDidLoad(){
         console.log("page_title:" + this.pageTitle);
         this.pageTitle = this.navParams.get("pageTitle");
-        this.passItem = this.loginService.getPassObject();
+        //this.passItem = this.loginService.getPassObject();
     }
 
     onSave(){        
@@ -33,6 +33,6 @@ export class PasswordPage{
         this.onCancel()
     }
     onCancel(){
-        this.viewCtrl.dismiss(this.passItem.passwords);
+        this.viewCtrl.dismiss();
     }
 }

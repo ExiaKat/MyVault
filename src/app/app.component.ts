@@ -1,3 +1,4 @@
+import { FavService } from './../services/favservice';
 import { LoginService } from './../services/login';
 import { TabsPage } from './../pages/tabs/tabs';
 
@@ -12,16 +13,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform,
-              statusBar: StatusBar,
-              splashScreen: SplashScreen,
-              private loginService: LoginService) {
+  constructor(
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private loginService: LoginService,
+    private favService: FavService
+  ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.loginService.prepareData();
+      this.loginService.getKeysData("keys");
+      this.favService.getFavData("fav")
     });
   }
 }

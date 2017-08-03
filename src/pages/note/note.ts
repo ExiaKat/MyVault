@@ -21,7 +21,7 @@ export class NotePage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad NotePage');
         this.pageTitle = this.navParams.get("pageTitle");
-        this.passItem = this.loginService.getPassObject();
+        // this.passItem = this.loginService.getPassObject();
     }
 
     onSave(){
@@ -30,11 +30,11 @@ export class NotePage {
         title: this.title,
         note: this.note
         }, this.pageTitle);
-        console.log(this.passItem);
+        // console.log(this.passItem);
         this.onCancel();
     }
 
     onCancel(){
-        this.viewCtrl.dismiss(this.passItem.notes);
+        this.viewCtrl.dismiss();
     }
 }

@@ -22,7 +22,7 @@ export class EmailPage {
     ionViewDidLoad() {  
     console.log('ionViewDidLoad EmailPage');
     this.pageTitle = this.navParams.get("pageTitle");
-    this.passItem = this.loginService.getPassObject();
+    // this.passItem = this.loginService.getPassObject();
     }
 
   onSave(){
@@ -32,11 +32,11 @@ export class EmailPage {
       emailadd: this.emailadd,
       emailpass: this.emailpass
     }, this.pageTitle);
-    console.log(this.passItem);
+    // console.log(this.passItem);
     this.onCancel();
   }
 
   onCancel(){
-    this.viewCtrl.dismiss(this.passItem.emails);
+    this.viewCtrl.dismiss();
   }
 }
