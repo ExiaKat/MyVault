@@ -12,23 +12,28 @@
 </ion-header>
 <ion-content padding>
     <ion-list>
-        <button ion-item *ngFor="let passItem of passList" (click)="onShowDetails(passItem)">
-            <h1>{{passItem.title}}</h1>
-            <p *ngIf="isLoginPage()">Username: {{passItem.username}}</p>
-            <p *ngIf="isPasswordPage()">Password: {{passItem.password}}</p>
-            <p *ngIf="isEmailPage()">Email Address: {{passItem.emailadd}}</p>
-            <p *ngIf="isBankPage()">Bank Account: {{passItem.account}}</p>
-            <p *ngIf="isPassportPage()">Passport Number: {{passItem.passportNum}}</p>
-            <p *ngIf="isNotePage()">Notes: {{passItem.note}}</p>
-            <!-- <p>Password: {{passItem.password}}</p>             -->
-            <!-- <ion-icon 
-                name="ios-star-outline" 
-                item-right 
-                (click)="onFavourite(passItem)"></ion-icon> -->
-            <!-- <ion-icon 
-                name="star" 
-                item-right 
-                (click)="onUnFavourite(passItem)"></ion-icon> -->
-        </button>
+        <ion-item-sliding *ngFor="let passItem of passList">
+            <button ion-item (click)="onShowDetails(passItem)">
+                <h1>{{passItem.title}}</h1>
+                <p *ngIf="isLoginPage()">Username: {{passItem.username}}</p>
+                <p *ngIf="isPasswordPage()">Password: {{passItem.password}}</p>
+                <p *ngIf="isEmailPage()">Email Address: {{passItem.emailadd}}</p>
+                <p *ngIf="isBankPage()">Bank Account: {{passItem.account}}</p>
+                <p *ngIf="isPassportPage()">Passport Number: {{passItem.passportNum}}</p>
+                <p *ngIf="isNotePage()">Notes: {{passItem.note}}</p>            
+            </button>
+            <ion-item-options slide="left">
+                <button ion-button clear icon-only *ngIf="!isFavourite(passItem)" (click)="onFavourite(passItem)">
+                    <ion-icon name="ios-star-outline"></ion-icon>
+                </button>
+                <button ion-button clear icon-only *ngIf="isFavourite(passItem)" (click)="onUnFavourite(passItem)">
+                    <ion-icon name="star"></ion-icon>
+                </button>
+                <button ion-button icon-only color="danger" (click)="onDelete(passItem)">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+        
     </ion-list>
 </ion-content>

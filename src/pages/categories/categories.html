@@ -17,4 +17,12 @@
       <p item-right>{{category.counter}}</p>
     </button>
   </ion-list>
+  <ion-fab bottom right>
+    <button ion-fab color="light" mini><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab *ngFor="let category of categoryList" (click)="onAddItem(category.page, category.title)">
+        <ion-icon name={{category.icon}}></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

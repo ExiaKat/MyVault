@@ -9,7 +9,7 @@ import { LoginPage } from './../login/login';
 import { PassListPage } from './../passlist/passlist';
 
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 @Component({
   selector: 'page-categories',
@@ -24,13 +24,15 @@ export class CategoriesPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private loginService: LoginService,
-    private passList: Passwords
+    private passList: Passwords,
+    private modalCtrl: ModalController
   ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CategoriesPage');
   } 
   ionViewWillEnter(){
+    console.log('ionViewWillEnter CategoriesPage');
     this.categoryList = [];
     this.loginService.getKeysData().then((value) => {
       this.passList = value;
@@ -41,6 +43,11 @@ export class CategoriesPage {
       this.categoryList.push({title:'Passports', page: PassportPage, icon: 'book', counter: this.passList.passports.length});
       this.categoryList.push({title:'Secure Notes', page: NotePage, icon: 'document', counter: this.passList.notes.length});
     });
+  }
+
+  onAddItem(page: any, pageTitle: string){
+    const modal = this.modalCtrl.create(page, {pageTitle: pageTitle});
+    modal.present();
   }
  
 }

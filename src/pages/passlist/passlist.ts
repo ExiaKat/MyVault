@@ -1,3 +1,4 @@
+import { FavService } from './../../services/favservice';
 import { DetailsPage } from './../details/details';
 import { LoginService } from './../../services/login';
 
@@ -17,7 +18,8 @@ export class PassListPage{
     constructor(private navCtrl: NavController,
                 private navParams: NavParams,
                 private modalCtrl: ModalController,
-                private loginService: LoginService){
+                private loginService: LoginService,
+                private favService: FavService){
 
     }
 
@@ -59,5 +61,23 @@ export class PassListPage{
             pageTitle: this.category.title, 
             passItem: passItem
         })
+    }
+    isFavourite(passItem: any){
+        return this.favService.isFavourite(passItem);
+    }
+    
+    onFavourite(passItem: any){
+        this.favService.addToFavourites(this.category.title, passItem);
+    }
+
+    onUnFavourite(passItem: any){
+        this.favService.removeFromFavourites(passItem);
+    }
+
+    onDelete(passItem: any){
+        if(this.favService.isFavourite(passItem)){
+            this.favService.removeFromFavourites(passItem);
+        }
+        this.loginService.removePassItem(passItem, this.category.title);
     }
 }
